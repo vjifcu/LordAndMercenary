@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    display: grid;
+    /*grid-template-columns: repeat(3, 4rem);*/
+    grid-template-rows: repeat(3, 7rem);
+    gap: .5rem;
+    padding: 1rem;
+}
+
+.board {
+    height: 100%;
+    width: 100%;
+    border: 1px solid green;
+    display: flex;
+    flex-direction: row;
+}
+
+.battlefield {
+    flex-grow: 1;
+    border: 1px solid red;
+}
+
+.deck {
+    width: 4rem;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border-radius: .5rem;
+    color: white;
+    background-color: darkgray;
+    user-select: none;
+}
+
+.card {
+    width: 4rem;
+    height: 7rem;
+    border: 1px solid black;
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.card.red {
+    color: red;
+    outline: 1px;
+}
+
+.card.black {
+    color: black;
+}
+
+.hand {
+    height: 100%;
+    width: 100%;
+}
+
+.local-hand {
+    border: 1px solid blue;
+}
+
+.remote-hand {
+    border: 1px solid purple;
+}

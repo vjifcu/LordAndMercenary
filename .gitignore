@@ -1,0 +1,5 @@
+# max hidden files
+.DS_Store
+
+# IDE preferences (vscode)
+.vscode/
