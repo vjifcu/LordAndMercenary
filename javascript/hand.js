@@ -3,9 +3,17 @@ import { Card } from './card.js'
 
 export class Hand {
     cards = []
+    handElement = document.createElement('div')
 
-    constructor(cards = []) {
+    constructor(container, cards = []) {
         this.cards = cards
+
+        //Construct Hand HTML element
+        if (container === null)
+            return
+
+        this.handElement.classList.add("hand")
+        container.appendChild(this.handElement)
     }
 
     shuffle() {
@@ -18,7 +26,9 @@ export class Hand {
     }
 
     draw(deck) {
-        this.cards.push(deck.draw());
+        const drawnCard = deck.draw()
+        this.cards.push(drawnCard)
+        this.handElement.appendChild(drawnCard.getHTML())
     }
 
     get numberOfCards() {

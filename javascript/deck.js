@@ -3,9 +3,18 @@ import { Card } from './card.js'
 
 export class Deck {
     cards = []
+    deckElement = document.createElement('div')
 
-    constructor(cards = freshDeck()) {
+    constructor(container, cards = freshDeck()) {
         this.cards = cards
+
+        //Construct Deck HTML element
+        if (container === null)
+            return
+        
+        this.deckElement.classList.add('deck')
+        this.deckElement.innerText = this.numberOfCards
+        container.appendChild(this.deckElement)
     }
 
     shuffle() {
@@ -18,6 +27,7 @@ export class Deck {
     }
 
     draw() {
+        this.deckElement.innerText = this.numberOfCards-1
         return this.cards.shift();
     }
 

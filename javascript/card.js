@@ -11,7 +11,10 @@ export class Card {
     }
 
     getHTML() {
-        return document.createElement('div')
+        const cardDiv = document.createElement('div')
+        cardDiv.innerText = `${this.value}${this.suit.VALUE}`
+        cardDiv.classList.add("card", this.suit.COLOR)
+        return cardDiv
     }
 
 }

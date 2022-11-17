@@ -22,6 +22,7 @@ body {
 
 .deck {
     width: 4rem;
+    height: 7rem;
     border: 1px solid black;
     display: flex;
     align-items: center;
@@ -42,6 +43,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    user-select: none;
 }
 
 .card.red {
@@ -56,12 +58,14 @@ body {
 .hand {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
-.local-hand {
+.local .hand {
     border: 1px solid blue;
 }
 
-.remote-hand {
+.remote .hand {
     border: 1px solid purple;
 }
