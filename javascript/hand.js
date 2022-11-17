@@ -1,6 +1,9 @@
 import {VALUES, SUITS} from './commonTypes.js'
 import { Card } from './card.js'
 
+const handlers = []
+const battlefield = document.querySelector('.board .battlefield')
+
 export class Hand {
     cards = []
     handElement = document.createElement('div')
@@ -26,14 +29,37 @@ export class Hand {
     }
 
     draw(deck) {
+        if (deck.numberOfCards <= 0)
+            return
+
         const drawnCard = deck.draw()
+        if (drawnCard == null)
+            return
+
         this.cards.push(drawnCard)
-        this.handElement.appendChild(drawnCard.getHTML())
+        const drawnCardElement = drawnCard.getHTML();
+        drawnCardElement.addEventListener('click', handlers[drawnCard] = this.playCard(drawnCard, this, battlefield), true)
+        this.handElement.appendChild(drawnCardElement)
     }
 
     get numberOfCards() {
         return this.cards.length
     }
+
+    playCard = function(card, hand, field) {
+        return function playCardFunction(event) {
+            const cardIndex = hand.cards.indexOf(card)
+            hand.cards.splice(cardIndex, 1)
+
+            hand.handElement.removeChild(this)
+
+            field.appendChild(this)
+
+            event.currentTarget.removeEventListener('click', handlers[card], true)
+        }
+    }
+
+    
 
 }
 

@@ -27,6 +27,9 @@ export class Deck {
     }
 
     draw() {
+        if (this.numberOfCards <= 0)
+            return null
+            
         this.deckElement.innerText = this.numberOfCards-1
         return this.cards.shift();
     }
