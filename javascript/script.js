@@ -1,8 +1,6 @@
 import { Deck } from "./deck.js";
 import { Hand } from "./hand.js";
 
-
-
 const deck = new Deck(document.querySelector('.draw-deck-container'))
 deck.shuffle()
 

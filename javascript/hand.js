@@ -1,5 +1,6 @@
 import {VALUES, SUITS} from './commonTypes.js'
 import { Card } from './card.js'
+import { GLOBAL_DRAGGED_CARD } from './card.js'
 
 const handlers = []
 const battlefield = document.querySelector('.board .battlefield')
@@ -16,6 +17,7 @@ export class Hand {
             return
 
         this.handElement.classList.add("hand")
+        this.handElement.addEventListener('dragover', this.dragOver)
         container.appendChild(this.handElement)
     }
 
@@ -38,7 +40,6 @@ export class Hand {
 
         this.cards.push(drawnCard)
         const drawnCardElement = drawnCard.getHTML();
-        drawnCardElement.addEventListener('click', handlers[drawnCard] = this.playCard(drawnCard, this, battlefield), true)
         this.handElement.appendChild(drawnCardElement)
     }
 
@@ -59,7 +60,30 @@ export class Hand {
         }
     }
 
-    
+    dragOver(event) {
+        const afterCardElement = getDragAfterElement(this, event.clientX)
+        if (GLOBAL_DRAGGED_CARD == null) {
+            this.appendChild(GLOBAL_DRAGGED_CARD)
+        } else {
+            this.insertBefore(GLOBAL_DRAGGED_CARD, afterCardElement)
+        }
+        
+    }
 
+}
+
+function getDragAfterElement(hand, x) {
+    const otherCards = [...hand.querySelectorAll('.draggable:not(.dragging)')]
+
+    return otherCards.reduce((closest, child) => {
+        const box = child.getBoundingClientRect()
+        const offset = x - box.left - box.width/2
+        if (offset < 0 && offset > closest.offset) {
+            return {offset: offset, element: child}
+        } else {
+            return closest
+        }
+    }, {offset: Number.NEGATIVE_INFINITY}).element
+        
 }
 
