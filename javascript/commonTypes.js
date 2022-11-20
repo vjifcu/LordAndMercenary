@@ -1,3 +1,5 @@
+import { GLOBAL_DRAGGED_CARD } from "./card.js"
+
 export const SUITS = {
     SPADE: {
         VALUE: "♠",
@@ -29,4 +31,37 @@ export const VALUES = {
     JACK: "J",
     QUEEN: "Q",
     KING: "K"
+}
+
+export function executeCardDragging(field, event) {
+    event.preventDefault()
+    const afterCardElement = getDragAfterElement(field, event.clientX)
+    if (GLOBAL_DRAGGED_CARD == null) {
+        field.appendChild(GLOBAL_DRAGGED_CARD)
+    } else {
+        field.insertBefore(GLOBAL_DRAGGED_CARD, afterCardElement)
+    }
+    
+}
+
+function getDragAfterElement(hand, x) {
+    const otherCards = [...hand.querySelectorAll('.draggable:not(.dragging)')]
+
+    var output = ""
+    var index = 0;
+
+    const value = otherCards.reduce((closest, child) => {
+        const box = child.getBoundingClientRect()
+        const offset = x - (box.right)
+        output += `i: ${index} offset: ${offset}\n`
+        index += 1;
+        if (offset < 0 && offset > closest.offset) {
+            return {offset: offset, element: child}
+        } else {
+            return closest
+        }
+    }, {offset: Number.NEGATIVE_INFINITY}).element
+    
+    console.log(output)
+    return value
 }

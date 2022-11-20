@@ -46,6 +46,7 @@ body {
     align-items: center;
     font-size: 2rem;
     background-color: white;
+    user-select: none;
 }
 
 .card.red {

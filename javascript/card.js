@@ -30,6 +30,7 @@ export class Card {
     }
 
     endDragging(event) {
+        event.preventDefault()
         this.classList.remove('dragging')
         GLOBAL_DRAGGED_CARD = null
     }
