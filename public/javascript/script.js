@@ -1,6 +1,23 @@
 import { Deck } from "./deck.js";
 import { Hand } from "./hand.js";
 
+let gameMode = "";
+let playerNum = 0;
+let localReady = false;
+let remoteReady = [];
+
+const socket = io();
+
+socket.on('player-number', playerNumber => {
+    if (playerNumber == -1) {
+        console.log('No player slots available')
+    } else {
+        playerNum = parseInt(playerNumber)
+        
+        console.log(playerNum)
+    }
+})
+
 const deck = new Deck(document.querySelector('.draw-deck-container'))
 deck.shuffle()
 

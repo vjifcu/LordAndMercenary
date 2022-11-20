@@ -3,3 +3,7 @@
 
 # IDE preferences (vscode)
 .vscode/
+
+# NPM
+package-lock.json
+node_modules/
