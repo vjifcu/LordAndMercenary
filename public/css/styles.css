@@ -1,7 +1,10 @@
 body {
+    
+}
+
+.board-container {
     margin: 0;
     display: grid;
-    /*grid-template-columns: repeat(3, 4rem);*/
     grid-template-rows: repeat(3, 7rem);
     gap: .5rem;
     padding: 1rem;
@@ -56,6 +59,11 @@ body {
 
 .card.black {
     color: black;
+}
+
+.hand-container {
+    height: 7rem;
+    width: 100%;
 }
 
 .hand {

@@ -14,7 +14,7 @@ socket.on('player-number', playerNumber => {
     } else {
         playerNum = parseInt(playerNumber)
         
-        console.log(playerNum)
+        console.log(`Joined as player ${playerNum}`)
     }
 })
 
